@@ -28,25 +28,23 @@ $('form#form').submit(function (e) {
                 await sleep(1500)
             }
 
+            for (let j = 0; j < response.length; j++) {
+                for (let i = 0; i < response[j].length; i++) {
+                    await sleep(50)
+                    let point = response[j][i]
+                    $(`#sqr-${point.y}-${point.x}`).css({backgroundColor: "green"})
+                    if ((response[response.length - 1]['x'] == point.x) && (response[response.length - 1]['y'] == point.y)) {
+                        await sleep(900)
+                        $(`body`).append($(`<div><h1>Вы нашли У в  ${point.x} столбце, ${point.y} строке !!!<h1></div>`));
+                        break
+                    }
+                }
 
-            //     debugger
-            // for (let j = 0; j < response.length; j++) {
-            //     for (let i = 0; i < response[j].length; i++) {
-            //         await sleep(50)
-            //         let point = response[j][i]
-            //         $(`#sqr-${point.y}-${point.x}`).css({backgroundColor: "green"})
-            //         if ((response[response.length - 1]['x'] == point.x) && (response[response.length - 1]['y'] == point.y)) {
-            //             await sleep(900)
-            //             $(`body`).append($(`<div><h1>Вы нашли У в  ${point.x} столбце, ${point.y} строке !!!<h1></div>`));
-            //             break
-            //         }
-            //     }
-
-            // await sleep(800)
-            // for (let i = 0; i < response[j].length; i++) {
-            //     let whitePoint = response[i]
-            //     $(`#sqr-${whitePoint.y}-${whitePoint.x}`).css({backgroundColor: "white"})
-            // }
+            await sleep(800)
+            for (let i = 0; i < response[j].length; i++) {
+                let whitePoint = response[i]
+                $(`#sqr-${whitePoint.y}-${whitePoint.x}`).css({backgroundColor: "white"})
+            }
         }
 
     })
